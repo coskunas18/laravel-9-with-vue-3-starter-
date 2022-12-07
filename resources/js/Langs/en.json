@@ -1,0 +1,19 @@
+{
+    "auth":{
+    "login":"Login",
+    "register":"Register"
+    },
+
+    "langs":{
+        "tr":"Turkish",
+        "en":"English"
+    },
+    "cart":{
+        "carCount":" {itemCount} piece/pieces item in cart"
+    },
+    "command":{
+        "reset":"Reset",
+        "submit":"Submit"
+    }
+
+}

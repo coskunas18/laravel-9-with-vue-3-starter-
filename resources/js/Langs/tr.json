@@ -1,0 +1,24 @@
+{
+
+    "auth":{
+        "login":"Giriş Yap",
+        "register":"Kayıt Ol"
+    },
+
+    "langs":{
+        "tr":"Türkçe",
+        "en":"İngilizce"
+    },
+    "cart":{
+        "cartCount":"Sepetinizde {itemCount} adet ürün var."
+    },
+    "command":{
+        "reset":"Sıfırla",
+        "submit":"Gönder"
+    },
+    "deneme":{
+        
+    }
+
+
+}
