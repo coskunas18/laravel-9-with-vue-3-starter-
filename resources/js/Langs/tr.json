@@ -15,6 +15,9 @@
     "command":{
         "reset":"Sıfırla",
         "submit":"Gönder"
+    },
+    "deneme":{
+        
     }
 
 
