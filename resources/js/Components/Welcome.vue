@@ -1,5 +1,5 @@
 <script setup>
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
+
 </script>
 
 <template>
@@ -10,7 +10,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
             </div>
 
             <div class="mt-8 text-2xl">
-                Welcome to your Jetstream application!sdfsfsdsfdsfdfds
+                Welcome to your Jetstream application!
             </div>
 
             <div class="mt-6 text-gray-500">

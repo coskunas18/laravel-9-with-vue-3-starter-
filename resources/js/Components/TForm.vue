@@ -1,28 +1,29 @@
 <template>
 
-  <form class="mt-3">
+  <form  @submit.prevent="$emit('submitted')" class="mt-3">
     <!-- Header -->
-    <div>
+    <div class="leading-3 mb-4">
         <!--Title-->
-        <h3>
+        <h3 class="text-2xl font-semibold text-black dark:text-white select-none">
             {{ title }}
         </h3>
-        <span>
+        <span class="italic text-sm text-black dark:text-white select-none">
             {{ subTitle }}
         </span>
     </div>
     <!-- Content -->
-    <div>
+    <div class="grid grid-cols-6 gap-4 ">
         <slot />
     </div>
 
     <!--Action Button Area-->
-    <div>
-       <slot name ="footer"/>
-       <div>
+    <div class="mt-3">
+       <slot v-if="$slots.hasOwnProperty('footer')" name="footer"/>
+       <div v-else class="flex space-x-3 justify-end">
         <!-- Reset -->
-        <t-button :label="t('command.reset')">
-        </t-button>
+        <t-button :label="t('command.reset')" @click.prevent="$emit('reset')" class="border-none" />
+        <!-- Save -->
+        <t-button :label="t('command.submit')" class="dark:bg-teal-900 border-none"  />
        </div>
     </div>
 </form>
@@ -32,6 +33,11 @@
 
 <script setup>
 import TButton from './TButton.vue';
+
+defineProps({
+    title:String,
+    subTitle:String,
+})
 </script>
 
 <style lang="scss" scoped>

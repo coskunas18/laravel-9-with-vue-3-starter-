@@ -3,7 +3,8 @@ import {ref} from "vue";
 import {Head, Link } from '@inertiajs/inertia-vue3';
 import {useI18n} from "vue-i18n";
 import Langs from "../Langs/langs";
-import TDarkModeChangerVue from "../Components/TDarkModeChanger.vue";
+import TDarkModeChangerVue from "@/Components/TDarkModeChanger.vue";
+import TMenu from "@/Components/TMenu.vue";
 
 const { t,locale } = useI18n();
 
@@ -27,16 +28,12 @@ const changeLang = (i) =>{
     <Head title="Welcome" />
 
     <!-- Container -->
-     <div class=" flex w-screen h-screen bg-slate-200 dark:bg-slate-800">
+     <div class=" flex w-screen h-screen bg-slate-200 dark:bg-slate-800 overflow-hidden">
         <!--Sidebar-->
-        <div class="bg-red-100 dark:bg-neutral-700 w-[15rem]">
-           <span class="flex justify-center font-bold text-center h-16 items-center
-            text-2xl text-slate-900 dark:text-white select-none">
-            Jetstream Eğitimi
-           </span>
-        </div>
+         <!-- Menu -->
+        <t-menu/>
         <!--Content Wrapper-->
-        <div class="flex flex-col w-full">
+        <div class="flex flex-col w-full overflow-y-scroll">
             <!--Top Bar-->
             <div class=" flex bg-sky-300 dark:bg-gray-600 w-full h-12 items-center justify-between">
                 <!--search-->
@@ -70,12 +67,20 @@ const changeLang = (i) =>{
                </div>
             </div>
           <!-- Header-->
-          <div class=" text-black dark:bg-slate-500 h-24 flex  items-center text-xl text-white pl-4 select-none dark:text-white">
+          <div class="flex justify-between items-center text-black dark:bg-slate-500 h-24 flex
+           items-center text-xl text-white pl-4 select-none dark:text-white">
+             <!-- Header Text -->
+             <span class="text-xl font-semibold" >
              <slot v-if="$slots.hasOwnProperty('header')" name="header"/>
              <span v-else v-text="header" ></span>
+            </span>
+            <!-- Action Area -->
+            <div>
+              <slot name="actionArea" />
+            </div>
           </div>
           <!--Content-->
-          <div class="bg-gray-300 dark:bg-gray-600 h-24 flex text-xl text-white h-full">
+          <div class="bg-gray-300 dark:bg-gray-600 h-24  text-xl text-white w-full h-full">
             <slot />
           </div>
         </div>
