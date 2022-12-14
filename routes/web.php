@@ -19,9 +19,26 @@ use Symfony\Component\Routing\Router;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
+        "header" => "Ana Sayfa",
        'tableData' => User::paginate(10)
     ]);
 });
+
+Route::get('users', function () {
+    return Inertia::render('Welcome', [
+        "header" => "Kullanıcılar",
+       'tableData' => User::paginate(10)
+    ]);
+})->name('users.index');
+
+Route::get('role-users', function () {
+    return Inertia::render('Welcome', [
+        "header" => "Role Sahip Kullanıcılar",
+       'tableData' => User::paginate(10)
+    ]);
+})->name('role-users.index');
+
+
 
 Route::middleware([
     'auth:sanctum',

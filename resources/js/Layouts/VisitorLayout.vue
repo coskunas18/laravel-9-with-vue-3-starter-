@@ -5,6 +5,12 @@ import {useI18n} from "vue-i18n";
 import Langs from "../Langs/langs";
 import TDarkModeChangerVue from "@/Components/TDarkModeChanger.vue";
 import TMenu from "@/Components/TMenu.vue";
+import { useStore } from '@/stores/useMenu.js';
+import {storeToRefs} from 'pinia'
+
+const menu = useStore();
+const {showMenu} = storeToRefs(menu);
+
 
 const { t,locale } = useI18n();
 
@@ -38,6 +44,10 @@ const changeLang = (i) =>{
             <div class=" flex bg-sky-300 dark:bg-gray-600 w-full h-12 items-center justify-between">
                 <!--search-->
                 <div class="flex items-center justify-center">
+                  <!--Menu Toggle-->
+                  <font-awesome-icon @click="menu.toggleMenu()" icon="fa-solid fa-bars" size="xl"
+                   class="cursor-pointer pl-3 dark:text-white"/>
+
                   <input type="text" class="rounded-lg dark:bg-slate-300
                   border-slate-500 outline-offset-4 h-8 w-48 ml-3">
                 </div>
@@ -76,6 +86,7 @@ const changeLang = (i) =>{
             </span>
             <!-- Action Area -->
             <div>
+
               <slot name="actionArea" />
             </div>
           </div>

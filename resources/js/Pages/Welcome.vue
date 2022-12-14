@@ -1,5 +1,5 @@
 <template>
-    <visitor-layout header="Form Komponenti">
+    <visitor-layout :header="header">
         <template #actionArea>
             <t-button label="Yeni Personel Ekle" @clicked="(showCreateModal = true)" />
         </template>
@@ -57,6 +57,7 @@ const showCreateModal = ref(false);
 
 defineProps({
     tableData:[Array],
+    header:String,
 })
 
 //Table Headers

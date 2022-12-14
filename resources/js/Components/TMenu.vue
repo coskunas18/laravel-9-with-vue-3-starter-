@@ -8,35 +8,16 @@
           Jetstream Eğitimi
         </span>
      </div>
-     {{ activeLink }}
       <!--Menu-->
     <div class="flex flex-col flex-grow mt-10 space-y-4  ">
        <!--Menu Items-->
        <template v-for="root in links">
-          <div @click="activeLink = root.id" class="flex justify-between px-4 items-center py-2 cursor-pointer hover:bg-slate-600 ">
-            <!--Link İnfo-->
-            <div class="flex space-x-4 items-center">
-            <!-- Icon -->
-            <font-awesome-icon v-if="root['icon']" :icon="root.icon" />
-            <!--Label-->
-             <span v-text="root.label"/>
-          </div>
-            <!--Dropdown Icon-->
-            <font-awesome-icon v-if="root['type'] === 'dropdown'" icon="fa-solid fa-chevron-down" />
-          </div>
-
+        <t-menu-item :item="root" />
           <!--Sub Links-->
           <div v-if="root['items'] && activeLink === root.id" class=" space-y-2 cursor-pointer
           bg-slate-500/25 py-2 ">
-            <template v-for="sub in root.items">
-               <div>
-                 <div class="flex pl-8 py-2 space-x-4 items-center hover:bg-slate-600">
-                    <!-- Icon -->
-                    <font-awesome-icon v-if="sub['icon']" :icon="sub.icon" />
-                    <!--Label-->
-                    <span v-text="sub.label"/>
-                 </div>
-               </div>
+            <template v-for="sub in root.items" >
+                    <t-menu-item :item="sub" sub-link />
             </template>
           </div>
        </template>
@@ -58,6 +39,7 @@
 <script setup>
 import Menu from "@/sources/menu.js";
 import { ref } from "vue";
+import TMenuItem from "./TMenuItem.vue";
 
 const activeLink = ref();
 const { links } = Menu();

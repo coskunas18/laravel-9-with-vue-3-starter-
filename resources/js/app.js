@@ -6,6 +6,10 @@ import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
+import { createPinia } from 'pinia'
+
+//pinia
+const pinia = createPinia()
 
 //fontawsome components
 import { FontAwesomeIcon, FontAwesomeLayers, FontAwesomeLayersText } from '@fortawesome/vue-fontawesome'
@@ -40,9 +44,10 @@ createInertiaApp({
     const App = createApp({ render: () => h(app, props) })
       App.config.globalProperties.t=i18n.global.t;
     return App
-            .use(i18n)
             .component('font-awesome-icon', FontAwesomeIcon)
             .component('TContentCard',TContentCard)
+            .use(pinia)
+            .use(i18n)
             .use(plugin)
             .use(ZiggyVue, Ziggy)
             .mount(el);
