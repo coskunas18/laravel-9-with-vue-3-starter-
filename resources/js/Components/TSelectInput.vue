@@ -13,7 +13,7 @@
             <option value="" class="text-slate-500">{{ placeholder }}</option>
              <!-- Options -->
              <template v-for="option in options">
-             <option :value="option[valueKey]" :selected="modelValue === option[valueKey] ? 'selected' : null  ">
+             <option :value="option[valueKey]" :selected="modelValue == option[valueKey] ? 'selected' : null  ">
              {{ option[labelKey] }}</option>
 
             </template>
@@ -29,13 +29,13 @@
          <template v-for="i in errors">
              <span class="text-sm italic text-red-400">{{ i }}</span>
          </template>
-
         </div>
     </div>
  </template>
 
  <script setup>
      defineProps({
+        id:String,
          label:String,
          errors:[Object,Array],
          modelValue:[String,Number,Date,Boolean],

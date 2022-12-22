@@ -3,7 +3,7 @@
     <component @click="$emit('clicked')" :is="link ? Link : 'button'" :href="link"
      class='px-4 py-2 ml-3 mt-3 rounded-lg bg-orange-400 text-black text-white space-x-2 text-base decoration-slate-800
      dark:bg-gray-800 dark:text-white flex w-fit justify-center items-center border border-yellow-800 select-none
-      dark:border-slate-400 active:scale-75'>
+      dark:border-slate-400'>
 
       <!--Icon-->
       <div v-if="icon || $slots.hasOwnProperty('icon')">

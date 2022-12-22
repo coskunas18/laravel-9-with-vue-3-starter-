@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -37,7 +38,16 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         return array_merge(parent::share($request), [
-            //
+            'flash' => [
+                'message' => function()use($request){
+                    $message = $request->session()->get('message');
+                    if ($message) {
+                        $message['_token'] = Carbon::now()->timestamp;
+                    }
+                    
+                    return $message;
+                }
+            ],
         ]);
     }
 }

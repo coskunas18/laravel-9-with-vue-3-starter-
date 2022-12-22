@@ -27,7 +27,7 @@
         <!-- Error Message -->
         <div v-if="errors">
          <template v-for="i in errors">
-             <span class="text-sm italic text-red-400">{{ i }}</span>
+             <span class="text-sm italic text-red-400">{{ i.hasOwnProperty('$message') ? i.$message : i }}</span>
          </template>
 
         </div>
@@ -36,6 +36,7 @@
 
  <script setup>
      const props = defineProps({
+         id:String,
          label:String,
          errors:[Object,Array],
          modelValue:[Array,Object],

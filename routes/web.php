@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PostController;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -17,43 +19,29 @@ use Symfony\Component\Routing\Router;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        "header" => "Ana Sayfa",
-       'tableData' => User::paginate(10)
-    ]);
+Route::middleware('auth:sanctum')->group(function(){
+    Route::get('/', function () {
+        return Inertia::render('Welcome');
+    });
+
+
+//POST
+Route::get('post', [PostController::class, 'index'])->name('post.index');
+Route::get('post/show/{id}', [PostController::class, 'show'])->name('post.show');
+Route::delete('delete/{id}', [PostController::class, 'destroy'])->name('post.destroy');
+Route::match(['get', 'post'], 'post/create', [PostController::class, 'create'])->name('post.create');
+Route::post('post', [PostController::class, 'store'])->name('post.store');
+Route::match(['get', 'post'], 'post/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
+Route::put('post/{post}', [PostController::class, 'update'])->name('post.update');
+
+
 });
 
-Route::get('users', function () {
-    return Inertia::render('Welcome', [
-        "header" => "Kullanıcılar",
-       'tableData' => User::paginate(10)
-    ]);
-})->name('users.index');
-
-Route::get('role-users', function () {
-    return Inertia::render('Welcome', [
-        "header" => "Role Sahip Kullanıcılar",
-       'tableData' => User::paginate(10)
-    ]);
-})->name('role-users.index');
 
 
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
-});
 
 //Test
-
-Route::any('test',function(){
-return Inertia::render('Test');
+Route::any('test', function () {
+    return Inertia::render('Test');
 })->name('test');
-
-

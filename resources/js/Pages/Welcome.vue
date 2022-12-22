@@ -3,10 +3,6 @@
         <template #actionArea>
             <t-button label="Yeni Personel Ekle" @clicked="(showCreateModal = true)" />
         </template>
-
-        <!-- Table -->
-        <t-table :data="tableData" :headers="tableHeaders"/>
-
     </visitor-layout>
 
 

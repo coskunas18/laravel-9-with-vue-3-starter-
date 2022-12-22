@@ -1,6 +1,6 @@
 <template>
 
-  <form  @submit.prevent="$emit('submitted')" class="mt-3">
+  <form  @submit.prevent="$emit('submited')" class="mt-3">
     <!-- Header -->
     <div class="leading-3 mb-4">
         <!--Title-->

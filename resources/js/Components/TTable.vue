@@ -22,7 +22,8 @@
           <!-- Column -->
             <td class="p-2 group-last:first:rounded-bl-lg group-last:last:rounded-br-lg dark:text-white
              text-black text-center ">
-                {{ row[column.id] }}
+             <slot v-if="$slots.hasOwnProperty(column.id)" :name="column.id" :props="row" />
+             <span v-else v-text="row[column.id]"></span>
             </td>
         </template>
         </tr>
@@ -48,6 +49,7 @@
 <script setup>
 import {computed} from 'vue';
 import { Link } from '@inertiajs/inertia-vue3';
+
 const props = defineProps({
     data: [Array,Object],
     headers: [Array,Object],
@@ -55,7 +57,7 @@ const props = defineProps({
 
 
 const tableData = computed(() =>{
-    if (props.data.hasOwnProperty('data')) {
+    if (props.data.hasOwnProperty('data')) { //eğer paginate ile yollandıysa burası dönecek
          return props.data.data
     }else{
         return props.data
